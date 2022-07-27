@@ -10,7 +10,7 @@ def hello():
 
 
 def is_even():
-    random_number = math.randint(1, 100)
+    random_number = randint(1, 100)
     print(f'Question: {random_number}')
     answer = prompt.string('Your answer: ')
     index = 0
@@ -40,3 +40,7 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
+
+
