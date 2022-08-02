@@ -2,27 +2,39 @@ from random import randint
 import prompt
 
 
-def is_even():
+def welcome_user():
+    """Ask username."""
+    print('Welcome to the Brain Games!')
     name = prompt.string('May I have your name? ')
     print(f'Hello, {name}!')
-    print('Answer "yes" if the number is even, otherwise answer "no".')
-    index = 0
-    winscore = 3
-    while index < winscore:
-        random_number = randint(1, 100)
-        print(f'Question: {random_number}')
-        answer = prompt.string('Your answer: ')
-        if (random_number % 2 == 0 and answer.lower() == 'yes') or random_number % 2 != 0 and answer.lower() == 'no':
-            print("Correct!")
-            index += 1
-        elif random_number % 2 == 0 and answer.lower() == 'no':
-            print("'no' is wrong answer ;(. Correct answer was 'yes'.\nLet's try again, Bill!")
-            break
-        elif random_number % 2 != 0 and answer.lower() == 'yes':
-            print("'yes' is wrong answer ;(. Correct answer was 'no'.\nLet's try again, Bill!")
-            break
+    return name
+
+
+def get_result(answer, correct_answer, name):
+    """Getting user answer."""
+    if answer == str(correct_answer):
+        print('Correct!')
+    else:
+        print(f"'{answer}' is wrong answer ;(.Correct answer was '{correct_answer}'.")
+        print(f"Let's try again, {name}!")
+
+
+def even_game():
+    """Even game code."""
+    name = welcome_user()
+    counter = 0
+    print('Answer "yes" if number is even, otherwise answer "no".')
+    for _ in range(3):
+        question = randint(1, 101)
+        if question % 2 == 0:
+            correct_answer = 'yes'
         else:
-            print("Your answer is wrong, try again")
+            correct_answer = 'no'
+        print(f'Question: {question}')
+        answer = prompt.string('Your answer: ')
+        get_result(answer, correct_answer, name)
+        counter += 1
+        if answer != correct_answer:
             break
-        if index == 3:
-            return(f'Congratulations, {name}!')
+        if counter == 3:
+            print(f"Congratulations, {name}!")
