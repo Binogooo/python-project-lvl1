@@ -2,13 +2,10 @@ from random import randint
 import prompt
 
 
-def hello():
+def is_even():
     name = prompt.string('May I have your name? ')
     print(f'Hello, {name}!')
     print('Answer "yes" if the number is even, otherwise answer "no".')
-
-
-def is_even():
     index = 0
     winscore = 3
     while index < winscore:
@@ -28,5 +25,4 @@ def is_even():
             print("Your answer is wrong, try again")
             break
         if index == 3:
-            grats = (f'Congratulations, {name}!')
-    return grats
+            return(f'Congratulations, {name}!')
